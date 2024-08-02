@@ -1,0 +1,2 @@
+export const LOGO_URL = "https://play-lh.googleusercontent.com/PaoAicTdQtTAD0E5bkcjDferMZNya16JTIbvDGQ6VA-WrYUzRxKNgMi8IiZOZ4OSWRM";
+export const CDN_URL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
