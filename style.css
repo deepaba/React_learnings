@@ -39,7 +39,12 @@
     background-color: "#fofoff";
     overflow-wrap:break-word;
     overflow: hidden;
+   
     
+}
+.resCardLink{
+    text-decoration: none;
+    color: black;
 }
 .res-cards{
     display: grid;
@@ -89,5 +94,31 @@
   .searchDiv{
     gap:10px;
   }
+  .resInfoClass{
+   
+    position:absolute;
+    padding: 5px;
+    margin: 5px;
+    top: 30%;
+    left: 30%;
+    right:30%;
+    margin: -50px 0 0 -50px;
+  }
+  .mainInfo{
+    border: 1px solid rgb(243, 237, 237);
+
+    padding: 5px;
+    margin: 5px;
+  }
+  .menuInfo{
+    border: 1px solid rgb(243, 237, 237);
+    padding: 5px;
+    margin: 5px;
+    overflow-wrap:break-word;
+    overflow: hidden;
+  }
+  .menuInfo>ul{
+    list-style-type:square;
+      }
 
 

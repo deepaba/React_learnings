@@ -12,9 +12,9 @@ const Header =()=> {
         </div>
         <div className="navDiv">
             <ul className="navList">
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">About Us</Link></li>
-                <li><Link to="/contact">Contact</Link></li>
+                <li><Link className="resCardLink" to="/">Home</Link></li>
+                <li><Link className="resCardLink" to="/about">About Us</Link></li>
+                <li><Link className="resCardLink" to="/contact">Contact</Link></li>
                 <li>Cart</li>
                 <li><button className = "loginButton" onClick={()=>{
                     btnLogin==="Login"?setBtonLogin("Logout"):setBtonLogin("Login");

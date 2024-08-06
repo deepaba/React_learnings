@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import restrarants from "../RestroData.json";
 import RestaurantCard from "./RestaurantCard";
+import { Link } from "react-router-dom";
 
 const Body = ()=>{
     //local State Variable -  powerful variable from react
@@ -40,7 +41,7 @@ const Body = ()=>{
                 }}>Top rated restaurants</button>
             </div>
             <div className="res-container">
-                {filterRestro.map((restro)=><RestaurantCard key={restro.info.id} restrObj={restro.info} />)}
+               {filterRestro.map((restro)=><Link className="resCardLink" to={'/restaurants/'+restro.info.id} key={restro.info.id}> <RestaurantCard key={restro.info.id} restrObj={restro.info} /></Link>)}
             
             </div>
             
