@@ -1,4 +1,9 @@
-.header{
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* .header{
     display: flex;
     justify-content: space-between;
     border: 1px solid rgb(243, 237, 237);
@@ -71,8 +76,8 @@
 }
 .loader {
     position: fixed;
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
+    border: 16px solid #f3f3f3; 
+    border-top: 16px solid #3498db; 
     border-radius: 50%;
     width: 120px;
     height: 120px;
@@ -120,5 +125,5 @@
   .menuInfo>ul{
     list-style-type:square;
       }
-
+ */
 

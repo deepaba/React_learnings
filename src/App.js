@@ -1,7 +1,7 @@
-import React from "react";
+import React, {  Suspense } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider , Outlet} from "react-router-dom";
-import About from "./Components/About";
+//import About from "./Components/About";
 
 //React Element
 
@@ -13,6 +13,7 @@ import Contact from "./Components/Contact";
 import Menu from "./Components/Menu";
 
 //React Component
+const AboutComponent = React.lazy(()=>import("./Components/About"));
 const AppLayout = ()=>(<div className="appLayout">
     <Header/>
     <Outlet/>
@@ -29,7 +30,7 @@ const appRouter = createBrowserRouter([
         },
         {   
             path:"/about",
-            element:<About/>
+            element:<Suspense fallback={<div>Please Wait...</div>}><AboutComponent/></Suspense>
         },
         {   
             path:"/contact",
@@ -44,7 +45,7 @@ const appRouter = createBrowserRouter([
     },
     {   
         path:"/about",
-        element:<About/>
+        element:<Suspense fallback={<div>Please Wait...</div>}><AboutComponent/></Suspense>
     }
 ]);
 const root = ReactDOM.createRoot(document.getElementById("root"));

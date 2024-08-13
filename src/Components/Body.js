@@ -2,46 +2,54 @@ import { useEffect, useState } from "react";
 import restrarants from "../RestroData.json";
 import RestaurantCard from "./RestaurantCard";
 import { Link } from "react-router-dom";
+import { RESTAURANT_API } from "../utils/constants";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = ()=>{
     //local State Variable -  powerful variable from react
     const [restros,setRes]= useState([]);
     const [filterRestro,setFIlterRestro]= useState([]);
     const [searchText,setSearchText]=useState("");
+   
     useEffect(()=>{
+       
         getData();
         },[]);
         const getData=async ()=>{
             try{
-            const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9148603&lng=77.5206395&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+            const data = await fetch(RESTAURANT_API);
             const json = await data.json();
             
             setRes(json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
             setFIlterRestro(json.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
             } catch(e){
-            setRes(restrarants.restaurant);
-            setFIlterRestro(restrarants.restaurant);
+                setRes(restrarants.restaurant);
+                setFIlterRestro(restrarants.restaurant);
             }
         }
+        const isOnline = useOnlineStatus();
+        if(!isOnline)
+            return (<div><h1>Oops!! Looks like you are offline!!</h1></div>);
+        
         if(restros.length==0)
-           return <div className="loader"></div>
+           return <div><h1>Loading......</h1></div>
     return(
-        <div className="body">
-            <div className="filter">
-                <div className="searchDiv">
-                    <input className="search" value={searchText} 
+        <div className="p-1 m-1 border border-slate-300 bg-slate-50 shadow-lg">
+            <div className="flex p-1 m-1 bg-slate-100">
+                <div className="p-1 m-1">
+                    <input className="p-1 m-1 border border-black" value={searchText} 
                     onChange={(evnt)=>setSearchText(evnt.target.value)}></input>
-                    <button className="searchBtn"
+                    <button className="p-1 m-1 bg-sky-400  rounded-sm"
                     onClick={()=>{
                         setFIlterRestro(restros.filter(res=>res.info.name.toUpperCase().includes(searchText.toUpperCase())));
-                    }}>Search</button></div>
-                <button className="filter-btn" onClick={()=>{ 
+                    }}>Search</button>
+                <button className="p-1 m-1 bg-sky-400  rounded-sm" onClick={()=>{ 
                   setFIlterRestro( restros.filter(res=>res.info.avgRating>4.3));
                     
-                }}>Top rated restaurants</button>
+                }}>Top rated restaurants</button></div>
             </div>
-            <div className="res-container">
-               {filterRestro.map((restro)=><Link className="resCardLink" to={'/restaurants/'+restro.info.id} key={restro.info.id}> <RestaurantCard key={restro.info.id} restrObj={restro.info} /></Link>)}
+            <div className="flex flex-wrap">
+               {filterRestro.map((restro)=><Link className="p-1 m-1 w-64 hover:cursor-pointer hover:border hover:border-black" to={'/restaurants/'+restro.info.id} key={restro.info.id}> <RestaurantCard key={restro.info.id} restrObj={restro.info} /></Link>)}
             
             </div>
             
