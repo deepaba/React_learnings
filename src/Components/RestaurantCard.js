@@ -1,3 +1,4 @@
+import colors from "tailwindcss/colors";
 import { CDN_URL } from "../utils/constants";
 
 const RestaurantCard = (props)=>{
@@ -15,4 +16,15 @@ const RestaurantCard = (props)=>{
         </div>
     );
 };
+export const PromotedRestaurant = (RestaurantCard)=>{
+    return (props)=>{
+return (
+    <div >
+        <label className="bg-black text-white p-1 m-1 rounded-md absolute">High Rated</label>
+        <RestaurantCard {...props}/>
+    </div>
+)
+
+    }
+}
 export default RestaurantCard;
