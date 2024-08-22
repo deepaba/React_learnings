@@ -1,15 +1,15 @@
 import { useParams } from "react-router-dom";
 import useMenuData from "../utils/useMenuData";
 import MenuCard from "./MenuCard";
-
+import { useState } from "react";
 const Menu = () => {
   const { resId } = useParams();
   // const [categories, setCategories] = useState(null);
   const data = useMenuData(resId);
-
+  const [showItems, setShowItems] = useState(0);
   const test = data?.cards[2]?.card?.card?.info;
   const menu = data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
-
+ 
   if (test == null || menu == null) return <div className="loader"></div>;
 
   const categories = menu.filter(
@@ -28,8 +28,12 @@ const Menu = () => {
         {cuisines.join(", ")} - {costForTwoMessage}
       </p>
 
-      {categories.map((cat) => (
-        <MenuCard menuInfo={cat.card.card} key={cat.card.card.title}/>
+      {categories.map((cat,index) => (
+        <MenuCard menuInfo={cat.card.card}
+        showItems={index===showItems&&true}
+        
+        showMenu = {()=>setShowItems(index)}
+        key={cat.card.card.title}/>
       ))}
       </div>
     

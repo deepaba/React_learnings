@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import restrarants from "../RestroData.json";
-import RestaurantCard,{PromotedRestaurant} from "./RestaurantCard";
+import RestaurantCard, { PromotedRestaurant } from "./RestaurantCard";
 import { Link } from "react-router-dom";
 import { RESTAURANT_API } from "../utils/constants";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import userContext from "../utils/userContext";
 
 const Body = () => {
   //local State Variable -  powerful variable from react
@@ -11,7 +12,7 @@ const Body = () => {
   const [filterRestro, setFIlterRestro] = useState([]);
   const [searchText, setSearchText] = useState("");
   const RestaurantPromoted = PromotedRestaurant(RestaurantCard);
-
+  const { loginUser, setUserName } = useContext(userContext);
   useEffect(() => {
     getData();
   }, []);
@@ -78,8 +79,16 @@ const Body = () => {
           >
             Top rated restaurants
           </button>
+          <label className="p-1 m-1">User name:</label>
+          <input
+            className="p-1 m-1 border border-black"
+            value={loginUser}
+            onClick={(e) => e.target.select()}
+            onChange={(e) => setUserName(e.target.value)}
+          ></input>
         </div>
       </div>
+
       <div className="flex flex-wrap">
         {filterRestro.map((restro) => (
           <Link
@@ -87,10 +96,11 @@ const Body = () => {
             to={"/restaurants/" + restro.info.id}
             key={restro.info.id}
           >
-            {
-                restro.info.avgRating>4.3?<RestaurantPromoted restrObj={restro.info} />:<RestaurantCard restrObj={restro.info} />
-            }
-            
+            {restro.info.avgRating > 4.3 ? (
+              <RestaurantPromoted restrObj={restro.info} />
+            ) : (
+              <RestaurantCard restrObj={restro.info} />
+            )}
           </Link>
         ))}
       </div>

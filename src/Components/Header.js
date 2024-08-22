@@ -1,10 +1,13 @@
 //React Element
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
+import userContext from "../utils/userContext";
 
 const Header =()=> {
     const[btnLogin,setBtonLogin]=useState("Login");
+    const user = useContext(userContext);
+   
     return (
     <div className="flex p-1 m-1 justify-between border border-slate-300 bg-slate-50 shadow-lg">
         <div className="w-32">
@@ -17,8 +20,9 @@ const Header =()=> {
                 <li><Link className="p-1 m-1" to="/contact">Contact</Link></li>
                 <li className="p-1 m-1">Cart</li>
                 <li><button className = "p-1 m-1 border border-black shadow-xl" onClick={()=>{
-                    btnLogin==="Login"?setBtonLogin("Logout"):setBtonLogin("Login");
+                    btnLogin==="Login"?setBtonLogin(user.loginUser):setBtonLogin("Login");
                 }}>{btnLogin}</button></li>
+                <li className="p-1 m-1">{user?.loginUser}</li>
             </ul>
         </div>
     </div>
