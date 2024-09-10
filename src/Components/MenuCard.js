@@ -17,7 +17,7 @@ const MenuCard = (props) => {
       </div>
       {showItems && (
         <div className="p-2 mx-auto my-2 w-1/2 text-left">
-          <ItemCard itemsInfo={menuInfo.itemCards} />
+          <ItemCard itemsInfo={menuInfo.itemCards} cartPage={false} />
         </div>
       )}
     </div>

@@ -19,7 +19,7 @@ const Header =()=> {
                 <li><Link className="p-1 m-1" to="/">Home</Link></li>
                 <li><Link className="p-1 m-1" to="/about">About Us</Link></li>
                 <li><Link className="p-1 m-1" to="/contact">Contact</Link></li>
-                <li className="p-1 m-1">Cart({cartItems.length} items)</li>
+                <li><Link className="p-1 m-1" to="/cart">Cart({cartItems.length} items)</Link></li>
                 <li><button className = "p-1 m-1 border border-black shadow-xl" onClick={()=>{
                     btnLogin==="Login"?setBtonLogin(user.loginUser):setBtonLogin("Login");
                 }}>{btnLogin}</button></li>
